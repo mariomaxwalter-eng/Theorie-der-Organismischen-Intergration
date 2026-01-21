@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regulationsformen nach Deci & Ryan | Wahlkurs J2 Psychologie</title>
+    <style>
+        :root {
+            --color-primary: #2184b3;
+            --color-secondary: #64a8d8;
+            --color-accent: #ff6b6b;
+            --color-success: #51cf66;
+            --color-warning: #fcc419;
+            --color-info: #4ecdc4;
+            --color-bg: #f8f9fa;
+            --color-surface: #ffffff;
+            --color-text: #212529;
+            --color-text-light: #6c757d;
+            --color-border: #dee2e6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--color-text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--color-surface);
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.95;
+        }
+
+        .header-meta {
+            margin-top: 20px;
+            font-size: 0.95em;
+            opacity: 0.85;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+        }
+
+        main {
+            padding: 40px 30px;
+        }
+
+        section {
+            margin-bottom: 50px;
+            scroll-margin-top: 100px;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            color: var(--color-primary);
+            border-bottom: 3px solid var(--color-info);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        section h2::before {
+            content: '';
+            width: 8px;
+            height: 30px;
+            background: var(--color-info);
+            border-radius: 4px;
+        }
+
+        .level-badge {
+            display: inline-block;
+            background: var(--color-warning);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .level-i { background: #a8dadc; }
+        .level-ii { background: #f1a208; }
+        .level-iii { background: #e63946; }
+
+        .aufgabe {
+            background: var(--color-bg);
+            border-left: 5px solid var(--color-info);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .aufgabe:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateX(5px);
+        }
+
+        .aufgabe h3 {
+            color: var(--color-primary);
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+
+        .aufgabe-nummer {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 35px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .szenario {
+            background: #e7f3ff;
+            border-left: 4px solid var(--color-primary);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+        .szenario strong {
+            color: var(--color-primary);
+        }
+
+        .aufgabe-liste {
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .aufgabe-liste li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .aufgabe-liste li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-info);
+            font-weight: bold;
+        }
+
+        .loesung {
+            background: #f0f9ff;
+            border-left: 4px solid var(--color-success);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 4px;
+            display: none;
+        }
+
+        .loesung.show {
+            display: block;
+        }
+
+        .loesung-toggle {
+            background: var(--color-success);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .loesung-toggle:hover {
+            background: #40c057;
+            transform: scale(1.05);
+        }
+
+        .kontinuum-visual {
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+        }
+
+        .kontinuum {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            min-width: 900px;
+        }
+
+        .kontinuum-item {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .kontinuum-item:nth-child(1) .kontinuum-label {
+            background: #ff6b6b;
+        }
+
+        .kontinuum-item:nth-child(2) .kontinuum-label {
+            background: #ffa94d;
+        }
+
+        .kontinuum-item:nth-child(3) .kontinuum-label {
+            background: #74c0fc;
+        }
+
+        .kontinuum-item:nth-child(4) .kontinuum-label {
+            background: #51cf66;
+        }
+
+        .kontinuum-label {
+            color: white;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            font-weight: bold;
+            font-size: 0.95em;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .kontinuum-content {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-top: none;
+            padding: 15px;
+            border-radius: 0 0 8px 8px;
+            text-align: left;
+            font-size: 0.9em;
+        }
+
+        .kontinuum-content strong {
+            display: block;
+            color: var(--color-primary);
+            margin-top: 8px;
+            margin-bottom: 5px;
+        }
+
+        .kontinuum-content strong:first-child {
+            margin-top: 0;
+        }
+
+        .kontinuum-content span {
+            color: var(--color-text-light);
+            font-size: 0.85em;
+        }
+
+        .tabelle-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid var(--color-border);
+        }
+
+        table td {
+            padding: 12px 15px;
+            border: 1px solid var(--color-border);
+        }
+
+        table tbody tr:nth-child(odd) {
+            background: #f8f9fa;
+        }
+
+        table tbody tr:hover {
+            background: #e7f3ff;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin: 30px 0;
+            border-bottom: 2px solid var(--color-border);
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            color: var(--color-text-light);
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover,
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .differenzierung-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .differenzierung-box h4 {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .differenzierung-box ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .differenzierung-box li::before {
+            content: '✓';
+            color: #fff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid var(--color-info);
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .info-box strong {
+            color: var(--color-primary);
+        }
+
+        footer {
+            background: var(--color-bg);
+            padding: 30px;
+            text-align: center;
+            color: var(--color-text-light);
+            border-top: 2px solid var(--color-border);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--color-primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+        }
+
+        .back-to-top:hover {
+            background: var(--color-secondary);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            .aufgabe {
+                padding: 15px;
+            }
+
+            section h2 {
+                font-size: 1.5em;
+            }
+
+            .kontinuum {
+                flex-direction: column;
+                min-width: auto;
+            }
+
+            .kontinuum-item {
+                margin-bottom: 15px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+
+            table th, table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 Regulationsformen nach Deci & Ryan</h1>
+            <p>Theorie der organismsischen Integration</p>
+            <div class="header-meta">
+                <strong>Wahlkurs J2 Psychologie | Berufliches Gymnasium</strong><br>
+                Aufgabensammlung zur Konsolidierung und Anwendung
+            </div>
+        </header>
+
+        <main>
+            <!-- Navigation Tabs -->
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab(event, 'kontinuum')">📊 Das Kontinuum</button>
+                <button class="tab-button" onclick="switchTab(event, 'niveau1')">📖 Niveau I</button>
+                <button class="tab-button" onclick="switchTab(event, 'niveau2')">🔄 Niveau II</button>
+                <button class="tab-button" onclick="switchTab(event, 'niveau3')">🚀 Niveau III</button>
+                <button class="tab-button" onclick="switchTab(event, 'ressourcen')">📚 Ressourcen</button>
+            </div>
+
+            <!-- TAB 1: Kontinuum Overview -->
+            <div id="kontinuum" class="tab-content active">
+                <section>
+                    <h2>Das Kontinuum der Regulationsformen</h2>
+                    
+                    <div class="info-box">
+                        <strong>💡 Die Theorie kurz zusammengefasst:</strong><br>
+                        Nach Deci & Ryan gibt es vier Typen extrinsischer Motivation, die auf einem Kontinuum von "heteronomer Kontrolle" (externe Steuerung) bis "Selbstbestimmung" (autonome Handlung) angeordnet sind. Je weiter rechts eine Regulationsform liegt, desto stärker ist das Verhalten vom Selbst bestimmt.
+                    </div>
+
+                    <div class="kontinuum-visual">
+                        <div class="kontinuum">
+                            <div class="kontinuum-item">
+                                <div class="kontinuum-label">1. Externe Regulation</div>
+                                <div class="kontinuum-content">
+                                    <strong>Locus of Control:</strong> <span>Extern</span>
+                                    <strong>Autonomie:</strong> <span>Keine</span>
+                                    <strong>Beispiel:</strong> <span>Taschengeld-Kürzung, Bestrafung</span>
+                                </div>
+                            </div>
+
+                            <div class="kontinuum-item">
+                                <div class="kontinuum-label">2. Introjizierte Regulation</div>
+                                <div class="kontinuum-content">
+                                    <strong>Locus of Control:</strong> <span>Intern (aber separiert)</span>
+                                    <strong>Autonomie:</strong> <span>Gering</span>
+                                    <strong>Beispiel:</strong> <span>Schuldgefühl, Pflichtgefühl</span>
+                                </div>
+                            </div>
+
+                            <div class="kontinuum-item">
+                                <div class="kontinuum-label">3. Identifizierte Regulation</div>
+                                <div class="kontinuum-content">
+                                    <strong>Locus of Control:</strong> <span>Intern</span>
+                                    <strong>Autonomie:</strong> <span>Mittel</span>
+                                    <strong>Beispiel:</strong> <span>Persönliche Karriereziele</span>
+                                </div>
+                            </div>
+
+                            <div class="kontinuum-item">
+                                <div class="kontinuum-label">4. Integrierte Regulation</div>
+                                <div class="kontinuum-content">
+                                    <strong>Locus of Control:</strong> <span>Intern (kohärent)</span>
+                                    <strong>Autonomie:</strong> <span>Hoch</span>
+                                    <strong>Beispiel:</strong> <span>Unternehmenskultur als eigene Werte</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="text-align: center; margin-top: 20px; color: var(--color-text-light);">
+                        ← <strong>Heteronome Kontrolle</strong> ——————————————— <strong>Selbstbestimmung</strong> →
+                    </p>
+                </section>
+            </div>
+
+            <!-- TAB 2: Niveau I (Reproduktion & Verständnis) -->
+            <div id="niveau1" class="tab-content">
+                <section>
+                    <h2>Reproduktions- & Verständnisebene</h2>
+                    
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">1</span> Kontinuum der Regulation</h3>
+                        <span class="level-badge level-i">Niveau I: Grundverständnis</span>
+                        
+                        <p><strong>Aufgabe:</strong> Ordnen Sie die folgenden Aussagen den vier Regulationstypen zu und begründen Sie, wo auf dem Kontinuum sie stehen:</p>
+                        
+                        <div class="aufgabe-liste">
+                            <li><strong>a)</strong> „Ich lerne für die Mathearbeit, weil ich sonst meine Eltern enttäusche und mich schuldig fühle."</li>
+                            <li><strong>b)</strong> „Ich trainiere regelmäßig im Fitnessstudio, weil ich davon überzeugt bin, dass Gesundheit für mein Leben zentral ist."</li>
+                            <li><strong>c)</strong> „Ich mache mein Ausbildungspraktikum gründlich, weil ich später in diesem Beruf arbeiten möchte und das Unternehmen einen guten Eindruck von mir haben soll."</li>
+                            <li><strong>d)</strong> „Ich putze mein Zimmer, weil meine Mutter mir sonst Taschengeld kürzt."</li>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Lösung anzeigen</button>
+                        <div class="loesung">
+                            <strong>Lösungen & Begründungen:</strong>
+                            <ul style="list-style: disc; margin-left: 20px; margin-top: 10px;">
+                                <li><strong>a) Introjizierte Regulation</strong> - Innerer Druck durch Schuldgefühle und Verantwortung</li>
+                                <li><strong>b) Integrierte Regulation</strong> - Vollständige Integration der Gesundheit in das Selbstkonzept</li>
+                                <li><strong>c) Identifizierte Regulation</strong> - Persönliche Wichtigkeit erkannt, Career-Ziel</li>
+                                <li><strong>d) Externale Regulation</strong> - Externe Konsequenz (Taschengeld)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">2</span> Schlüsselbegriffe erklärt</h3>
+                        <span class="level-badge level-i">Niveau I: Grundverständnis</span>
+                        
+                        <p><strong>Aufgabe:</strong> Ergänzen Sie die Lücken mit den passenden Begriffen:</p>
+                        
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 15px 0; font-family: monospace;">
+                            <p>1. _________________ ist die Form extrinsischer Motivation mit dem höchsten Grad an Selbstbestimmung.</p>
+                            <p>2. Bei der _________________ folgen Verhaltensweisen internem Druck und sind relevant für die Selbstachtung.</p>
+                            <p>3. Das _________________ beschreibt den Übergang von extern gelenktem zu selbstbestimmtem Verhalten.</p>
+                            <p>4. _________________ werden aus äußeren Gründen ausgeführt (Belohnung/Bestrafung).</p>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Lösung anzeigen</button>
+                        <div class="loesung">
+                            <strong>Lösungen:</strong>
+                            <p>1. <strong>Integrierte Regulation</strong></p>
+                            <p>2. <strong>introjizierten Regulation</strong></p>
+                            <p>3. <strong>Internalisierungsgeschehen</strong></p>
+                            <p>4. <strong>Extern regulierte Verhaltensweisen</strong></p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 3: Niveau II (Transfer & Anwendung) -->
+            <div id="niveau2" class="tab-content">
+                <section>
+                    <h2>Transfer- & Anwendungsebene</h2>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">3</span> Fallsituationen aus der Lebenswelt</h3>
+                        <span class="level-badge level-ii">Niveau II: Anwendung</span>
+                        
+                        <p><strong>Szenario: Die angehende Einzelhandelskauffrau</strong></p>
+                        <p>Lisa ist angehende Einzelhandelskauffrau und soll sich intensiv auf ihre Abschlussprüfung vorbereiten.</p>
+                        
+                        <div class="szenario">
+                            <strong>Fall 1:</strong> Der Ausbildungsbetrieb belohnt die beste Prüfungsvorbereitung mit 200€ Prämie.
+                        </div>
+                        
+                        <div class="szenario">
+                            <strong>Fall 2:</strong> Lisa fühlt sich verpflichtet, gut abzuschneiden, „weil es sich einfach gehört" und sie sonst kein gutes Gewissen hätte.
+                        </div>
+                        
+                        <div class="szenario">
+                            <strong>Fall 3:</strong> Lisa weiß, dass ein guter Abschluss die Grundlage für ihre Karriere als Teamleiterin ist, die sie anstrebt.
+                        </div>
+                        
+                        <div class="szenario">
+                            <strong>Fall 4:</strong> Lisa hat sich mit den beruflichen Werten des Unternehmens identifiziert und sieht die Prüfung als Teil ihrer professionellen Entwicklung.
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <p><strong>Aufgaben:</strong></p>
+                            <div class="aufgabe-liste">
+                                <li>a) Ordnen Sie die Fälle 1-4 den Regulationstypen zu.</li>
+                                <li>b) Welcher Fall motiviert Lisa am nachhaltigsten? Begründen Sie mit dem Text.</li>
+                                <li>c) Welche Unterschiede sehen Sie zwischen Fall 2 und Fall 3?</li>
+                            </div>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Lösung anzeigen</button>
+                        <div class="loesung">
+                            <strong>Lösungen:</strong>
+                            <p><strong>a) Zuordnung:</strong></p>
+                            <ul style="list-style: disc; margin-left: 20px;">
+                                <li>Fall 1 → Externale Regulation (Belohnung)</li>
+                                <li>Fall 2 → Introjizierte Regulation (innerer Druck, Pflichtgefühl)</li>
+                                <li>Fall 3 → Identifizierte Regulation (eigenes Karriereziel)</li>
+                                <li>Fall 4 → Integrierte Regulation (vollständige Wertintegration)</li>
+                            </ul>
+                            
+                            <p><strong>b) Nachhaltigste Motivation:</strong> Fall 4 (Integrierte Regulation). Dieser Fall kombiniert persönliche Relevanz mit dem kohärenten Selbstkonzept. Die Prüfungsvorbereitung ist nicht instrumentell, sondern Teil der eigenen Entwicklung.</p>
+                            
+                            <p><strong>c) Unterschied zwischen Fall 2 & 3:</strong> Fall 2 ist Pflicht ohne eigene Überzeugung; Fall 3 ist persönliches Ziel. Bei Fall 2 ist der Locus of Control noch extern wahrgenommen, bei Fall 3 hat Lisa eine bewusste Entscheidung getroffen.</p>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">4</span> Regulationsformen in der dualen Ausbildung</h3>
+                        <span class="level-badge level-ii">Niveau II: Anwendung</span>
+                        
+                        <p><strong>Szenario:</strong> Sie arbeiten als Ausbilder*in in einem Handwerksbetrieb und möchten Ihre Auszubildenden stärker motivieren, ihre Aufgaben gewissenhaft zu erfüllen.</p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>Welche Regulationstypen könnten Sie gezielt einsetzen?</li>
+                            <li>Welche langfristigen Folgen hätten rein externe Regulationsformen (z.B. Strafzettelsystem)?</li>
+                            <li>Wie könnten Sie eine Bewegung vom extern regulierten zum integrierten Verhalten fördern?</li>
+                        </div>
+                        
+                        <p style="margin-top: 15px;"><strong>Handlungsanforderung:</strong><br>
+                        Entwerfen Sie ein Konzept für ein nachhaltiges Motivationssystem in Ihrer Ausbildungsstätte, das die Schüler*innen über externe Regulation hinaus zu selbstbestimmtem Handeln führt.</p>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Lösungshinweise anzeigen</button>
+                        <div class="loesung">
+                            <strong>Lösungsansätze:</strong>
+                            <ul style="list-style: disc; margin-left: 20px;">
+                                <li><strong>Einzusetzende Regulationstypen:</strong> Mischung aus identifizierter (klare Karriereziele aufzeigen) und integrierter Regulation (Werte des Betriebs transparenter machen)</li>
+                                <li><strong>Langfristfolgen von externer Reg.:</strong> Unkündigung des Handelns, Fluktuation, geringe Qualität ohne Aufsicht, keine Identifikation mit dem Betrieb</li>
+                                <li><strong>Förderung der Bewegung:</strong> Mentoring, klare Karriereperspektiven, Partizipation bei Entscheidungen, Werteorientierung der Betriebskultur</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">5</span> Digitale Mediennutzung - Regulationsanalyse</h3>
+                        <span class="level-badge level-ii">Niveau II: Anwendung</span>
+                        
+                        <p><strong>Szenario:</strong> Viele Schüler*innen berichten von intensiver Smartphone-Nutzung. Analysieren Sie diese Situationen:</p>
+                        
+                        <div class="szenario">
+                            <strong>Laura:</strong> scrollt täglich 3 Stunden durch TikTok, um nicht von ihrer Clique ausgeschlossen zu sein („Alle schauen die neuesten Trends an").<br>
+                            → Welche Regulationsform liegt hier vor?
+                        </div>
+                        
+                        <div class="szenario">
+                            <strong>Fabian:</strong> begrenzt seine Gaming-Zeit bewusst auf 1,5 Stunden täglich, weil er für seine Karriere im IT-Bereich auch Zeit für Programmieren und Sport braucht.<br>
+                            → Welche Regulationsform ermöglicht dies?
+                        </div>
+                        
+                        <div class="szenario">
+                            <strong>Mia:</strong> nutzt Instagram intensiv, weil ihre Eltern bei jeder Abweichung Ärger machen.<br>
+                            → Auf welcher Position des Kontinuums steht diese Motivation?
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Analyse anzeigen</button>
+                        <div class="loesung">
+                            <strong>Analysen:</strong>
+                            <p><strong>Laura:</strong> Introjizierte Regulation - innerer Druck durch Zugehörigkeitsbedürfnis (aber noch nicht bewusst selbstbestimmt)</p>
+                            <p><strong>Fabian:</strong> Integrierte Regulation - Bewusste, selbstbestimmte Entscheidung basierend auf persönlichen Zielen</p>
+                            <p><strong>Mia:</strong> Externale Regulation - Kontrolle durch externe Sanktion (Elternärger)</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 4: Niveau III (Problemlösung & Gestaltung) -->
+            <div id="niveau3" class="tab-content">
+                <section>
+                    <h2>Problem- & Gestaltungsebene</h2>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">6</span> Kritische Reflexion - Internalisierungsprozesse</h3>
+                        <span class="level-badge level-iii">Niveau III: Problemlösung</span>
+                        
+                        <p><strong>Aufgabe:</strong> Der Text beschreibt Internalisierung als Prozess der Integration externer Regeln in das Selbstkonzept.</p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>a) Welche gesellschaftlichen Institutionen (Familie, Schule, Medien, Peer-Group) beeinflussen diesen Internalisierungsprozess?</li>
+                            <li>b) Kann es problematisch sein, wenn Normen zu gut internalisiert werden? Beispiele?</li>
+                            <li>c) Wie unterscheidet sich die Internalisierung von Normen in traditionellen vs. individualistischen Kulturen?</li>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Diskussionsansätze anzeigen</button>
+                        <div class="loesung">
+                            <strong>Diskussionsansätze:</strong>
+                            <p><strong>a) Gesellschaftliche Institutionen:</strong> Familie prägt grundlegende Werte, Schule vermittelt akademische/soziale Normen, Peers beeinflussen Identitätsbildung, Medien schaffen Rollenvorbilder</p>
+                            <p><strong>b) Problematische Über-Internalisierung:</strong> Beispiele: Perfektionismus, Unterdrückung eigener Bedürfnisse, Identitätsverlust, kulturelle Assimilation unter Druck</p>
+                            <p><strong>c) Kulturelle Unterschiede:</strong> In traditionellen Kulturen: stärkere familiale Normen, Gehorsam; in individualistischen: mehr Hinterfragung, Selbstverwirklichung</p>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">7</span> Berufsfeld-Anwendung: Personalmanagement</h3>
+                        <span class="level-badge level-iii">Niveau III: Problemlösung</span>
+                        
+                        <p><strong>Szenario:</strong> Sie sind HR-Manager*in und möchten die Mitarbeitermotivation erhöhen. Häufig wird nur mit extrinsischen Anreizen (Bonus, Prämien) gearbeitet – mit wenig nachhaltigem Erfolg.</p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>a) Erklären Sie auf Basis der Theorie, warum externe Anreize allein keine langfristige Motivation aufbauen.</li>
+                            <li>b) Welche Maßnahmen könnten Sie ergreifen, um Mitarbeitende vom Stadium der externalen Regulation zur integrierten Regulation zu führen?</li>
+                            <li>c) Wie könnten Sie Lernprozesse gestalten, damit Mitarbeitende die Werte des Unternehmens internalisieren?</li>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Lösungsansätze anzeigen</button>
+                        <div class="loesung">
+                            <strong>Lösungsansätze:</strong>
+                            <p><strong>a) Warum externe Anreize allein nicht funktionieren:</strong> Sie adressieren nicht den inneren Beweggrund. Wenn die Belohnung wegfällt, fällt auch die Motivation weg. Es entstehen keine intrinsischen Werte.</p>
+                            <p><strong>b) Maßnahmen für Regulationsstufenwechsel:</strong></p>
+                            <ul style="list-style: disc; margin-left: 20px;">
+                                <li>Klare Karriereziele aufzeigen (Identifizierte Regulation)</li>
+                                <li>Mentoring und Entwicklungsgespräche</li>
+                                <li>Partizipation bei Entscheidungen</li>
+                                <li>Sinnvermittlung der Arbeit</li>
+                                <li>Kulturelle Werteorientierung transparent machen</li>
+                            </ul>
+                            <p><strong>c) Werteinternalisierung:</strong> Regelmäßige Kommunikation von Unternehmenszielen, Vorbildfunktion von Führungskräften, Anerkennung von Leistung (nicht nur monetär), Team-Building mit Wertebezug</p>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">8</span> Metacognitive Selbstanalyse</h3>
+                        <span class="level-badge level-iii">Niveau III: Reflexion</span>
+                        
+                        <p><strong>Reflexionsaufgabe für Schüler*innen (persönlich und individualisiert):</strong></p>
+                        
+                        <div class="info-box">
+                            Wählen Sie drei aktuelle Lernaktivitäten oder Verpflichtungen in Ihrer Ausbildung/Schule:
+                        </div>
+                        
+                        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                            <p>1. _________________ (Beispiel: „Für die Abschlussprüfung lernen")</p>
+                            <p>2. _________________ (Beispiel: „Ein Referat vorbereiten")</p>
+                            <p>3. _________________ (Beispiel: „Praktikumsaufgaben erfüllen")</p>
+                        </div>
+                        
+                        <p style="margin-top: 20px;"><strong>Analysieren Sie für jede Aktivität:</strong></p>
+                        <div class="aufgabe-liste">
+                            <li>Was treibt mich an?</li>
+                            <li>Auf welcher Ebene des Kontinuums befinde ich mich?</li>
+                            <li>Wie könnte ich mich in Richtung höherer Selbstbestimmung bewegen?</li>
+                            <li>Was bräuchte ich dafür (Unterstützung durch Eltern, Lehrende, Betrieb)?</li>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- TAB 5: Ressourcen & Kompetenzüberprüfung -->
+            <div id="ressourcen" class="tab-content">
+                <section>
+                    <h2>Kompetenzüberprüfung & Ressourcen</h2>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">9</span> Vergleich der Regulationsformen (Tabellarische Synthese)</h3>
+                        <span class="level-badge level-ii">Niveau II-III: Synthese</span>
+                        
+                        <p><strong>Aufgabe:</strong> Erstellen Sie eine Vergleichstabelle mit folgenden Kriterien:</p>
+                        
+                        <div class="tabelle-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Regulationstyp</th>
+                                        <th>Locus of Control</th>
+                                        <th>Autonomie</th>
+                                        <th>Beispiel aus Schulalltag</th>
+                                        <th>Nachhaltigkeit</th>
+                                        <th>Position auf Kontinuum</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Externale Regulation</td>
+                                        <td>Extern</td>
+                                        <td>Keine</td>
+                                        <td>Noten für gute Leistung</td>
+                                        <td>Gering</td>
+                                        <td>Ganz links (0%)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Introjizierte Regulation</td>
+                                        <td>Intern (separiert)</td>
+                                        <td>Gering</td>
+                                        <td>„Ich muss büffeln, sonst bin ich faul"</td>
+                                        <td>Mittel</td>
+                                        <td>Links (25%)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Identifizierte Regulation</td>
+                                        <td>Intern</td>
+                                        <td>Mittel-Hoch</td>
+                                        <td>Lernen für angestrebtes Studium</td>
+                                        <td>Hoch</td>
+                                        <td>Rechts (75%)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Integrierte Regulation</td>
+                                        <td>Intern (kohärent)</td>
+                                        <td>Sehr hoch</td>
+                                        <td>Fachschaften, Projekte aus Überzeugung</td>
+                                        <td>Sehr hoch</td>
+                                        <td>Ganz rechts (100%)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">10</span> Textanalysekompetenz - Metaphernverständnis</h3>
+                        <span class="level-badge level-ii">Niveau II: Verständnis</span>
+                        
+                        <p><strong>Im Text wird die Metapher verwendet:</strong></p>
+                        <p style="background: #e7f3ff; padding: 15px; border-radius: 8px; font-style: italic;">
+                            „Metaphorisch ausgedrückt: Regulator und Regulierter sind verschieden, obwohl sie beide ein und derselben Person innewohnen."
+                        </p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>a) Erklären Sie diese Metapher in eigenen Worten.</li>
+                            <li>b) Welcher Regulationstyp wird damit beschrieben?</li>
+                            <li>c) Geben Sie ein Beispiel aus der Lebenswelt von Schüler*innen.</li>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Interpretation anzeigen</button>
+                        <div class="loesung">
+                            <p><strong>a) Metaphern-Erklärung:</strong> Die Person ist „gespalten" – das Ich, das handeln möchte (Regulierter) und das Ich, das kontrolliert und druck ausübt (Regulator). Sie sind getrennt, obwohl sie eine Person sind.</p>
+                            <p><strong>b) Regulationstyp:</strong> Introjizierte Regulation</p>
+                            <p><strong>c) Schüler*innen-Beispiel:</strong> „Ich möchte mit Freunden abhängen, aber ein innere Stimme sagt mir, ich soll lieber lernen. Ich fühle mich schuldig, wenn ich nicht lerne – obwohl ich es eigentlich gar nicht will."</p>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">11</span> Dimensionen extrinsischer Motivation</h3>
+                        <span class="level-badge level-iii">Niveau III: Analyse</span>
+                        
+                        <p><strong>Der Text hebt hervor:</strong></p>
+                        <p style="background: #e7f3ff; padding: 15px; border-radius: 8px;">
+                            „Intrinsisch motivierte Verhaltensweisen [sind] autotelischer Natur, während integriertes (extrinsisches) Verhalten eine instrumentelle Funktion besitzt."
+                        </p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>a) Erklären Sie die Begriffe „autotelisch" vs. „instrumentell" mit Beispielen.</li>
+                            <li>b) Warum ist dieser Unterschied wichtig?</li>
+                            <li>c) In welchen beruflichen Kontexten sind beide Formen von Motivation wertvoll?</li>
+                        </div>
+                        
+                        <button class="loesung-toggle" onclick="toggleLoesung(this)">✓ Erklärung anzeigen</button>
+                        <div class="loesung">
+                            <p><strong>a) Autotelisch vs. Instrumentell:</strong></p>
+                            <ul style="list-style: disc; margin-left: 20px;">
+                                <li><strong>Autotelisch:</strong> Selbstzweck (z.B. Musik spielen aus Freude, nicht für Belohnung)</li>
+                                <li><strong>Instrumentell:</strong> Mittel zum Zweck (z.B. Lesen lernen, um Karriere zu machen)</li>
+                            </ul>
+                            
+                            <p><strong>b) Wichtigkeit des Unterschieds:</strong> Autotelische Motivation ist unstoppbar und erfüllend, aber selten. Instrumentelle Motivation (wie integrierte Regulation) ist nachhaltig und bewusst gewählt.</p>
+                            
+                            <p><strong>c) Berufliche Kontexte:</strong> Kreativberufe benötigen autotelische Motivation (Designer, Künstler); Managementpositionen nutzen eher integrierte Regulation (Verantwortung für Gesamtziele).</p>
+                        </div>
+                    </div>
+
+                    <div class="aufgabe">
+                        <h3><span class="aufgabe-nummer">12</span> Gestaltungsauftrag – Motivationsprogramm für Betrieb</h3>
+                        <span class="level-badge level-iii">Niveau III: Projekt</span>
+                        
+                        <p><strong>Szenario:</strong> Ihr Ausbildungsbetrieb kämpft mit hoher Fluktuation von Azubis nach dem ersten Lehrjahr. Viele kündigen, obwohl sie formal gute Leistungen erbracht haben.</p>
+                        
+                        <div class="aufgabe-liste">
+                            <li>1. Analysieren Sie die Situation mit der Theorie der organismischen Integration.</li>
+                            <li>2. Erarbeiten Sie Hypothesen, auf welchen Regulationsstufen die Azubis verharren könnten.</li>
+                            <li>3. Entwickeln Sie konkrete Maßnahmen für ein Motivationsprogramm, das die Internalisierung von Unternehmenszielen fördert.</li>
+                            <li>4. Erstellen Sie eine Präsentation oder ein Handout für die Ausbildungsleitung.</li>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Differenzierungsmöglichkeiten -->
+                <section>
+                    <h2>Differenzierungsmöglichkeiten</h2>
+
+                    <div class="differenzierung-box">
+                        <h4>📈 Für leistungsstarke Schüler*innen:</h4>
+                        <ul>
+                            <li>Vergleich mit anderen Motivationstheorien (Herzberg, Maslow)</li>
+                            <li>Kulturelle Unterschiede in Internalisierungsprozessen</li>
+                            <li>Neurobiologische Grundlagen von Selbstbestimmung</li>
+                            <li>Kritische Reflexion: Ist vollständige Internalisierung immer wünschenswert?</li>
+                        </ul>
+                    </div>
+
+                    <div class="differenzierung-box" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <h4>💡 Für Schüler*innen mit Unterstützungsbedarf:</h4>
+                        <ul>
+                            <li>Vereinfachte Textfassungen mit Visualisierungen</li>
+                            <li>Strukturierte Arbeitsblätter mit Lückentext und Bildern</li>
+                            <li>Partnerarbeit mit Peer-Tutoring</li>
+                            <li>Video-Erklärungen zu den Regulationsformen</li>
+                            <li>Konkrete, alltägliche Beispiele statt abstrakter Konzepte</li>
+                        </ul>
+                    </div>
+
+                    <div class="differenzierung-box" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <h4>🎬 Medienempfehlungen & Ergänzung:</h4>
+                        <ul>
+                            <li>Infografik: Das Kontinuum der Regulation als visuelle Grafik</li>
+                            <li>Kurzvideos: „Die vier Regulationsformen im Berufsleben"</li>
+                            <li>Animation: „Von Angst zu Autonomie: Der Weg der Internalisierung"</li>
+                            <li>Interaktive Quiz: Regulationstypen-Erkennung</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer>
+            <p><strong>Wahlkurs Psychologie J2 | Berufliches Gymnasium</strong></p>
+            <p>Aufgabensammlung zur Theorie der organismischen Integration nach Deci & Ryan</p>
+            <p style="margin-top: 15px; font-size: 0.9em;">
+                💾 Speichern Sie diese Seite für zukünftige Referenz | 🖨️ Druckbar im Browser
+            </p>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <div class="back-to-top" id="backToTop" onclick="scrollToTop()">↑</div>
+    </div>
+
+    <script>
+        // Tab switching
+        function switchTab(event, tabName) {
+            event.preventDefault();
+            
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Solution toggling
+        function toggleLoesung(button) {
+            const loesung = button.nextElementSibling;
+            loesung.classList.toggle('show');
+            button.textContent = loesung.classList.contains('show') ? '✓ Lösung verbergen' : '✓ Lösung anzeigen';
+        }
+
+        // Back to top functionality
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Regulationsformen Wahlkurs geladen ✓');
+        });
+    </script>
+</body>
+</html>
